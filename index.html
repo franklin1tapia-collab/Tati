@@ -1,175 +1,168 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Belén</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: radial-gradient(circle at top, #1e293b, #020617);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden;
-  }
-  /* Particulas */
-  .particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #38bdf8;
-    border-radius: 50%;
-    animation: float 10s infinite linear;
-    opacity: 0.6;
-  }
-  @keyframes float {
-    from { transform: translateY(100vh) translateX(0); }
-    to { transform: translateY(-10vh) translateX(100px); }
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap');
 
-  .card {
-    background: rgba(255,255,255,0.95);
-    width: 90%;
-    max-width: 600px;
-    padding: 40px;
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
-    animation: aparecer 1.2s ease-out;
-    position: relative;
-    z-index: 2;
-  }
-  @keyframes aparecer {
-    from { opacity: 0; transform: translateY(30px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 42px;
-    margin: 0 0 5px 0;
-    color: #0f172a;
-  }
-  .sub {
-    color: #38bdf8;
-    font-weight: 600;
-    letter-spacing: 2px;
-    font-size: 12px;
-    margin-bottom: 25px;
-  }
-  #texto {
-    color: #334155;
-    line-height: 1.8;
-    font-size: 15.5px;
-    min-height: 220px;
-  }
-  .firma {
-    margin-top: 30px;
-    text-align: right;
-    font-family: 'Dancing Script', cursive;
-    font-size: 24px;
-    color: #0f172a;
-  }
-  button {
-    margin-top: 25px;
-    background: #0f172a;
-    color: white;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 50px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 100%;
-  }
-  button:hover {
-    background: #38bdf8;
-    transform: scale(1.03);
-    box-shadow: 0 10px 20px rgba(56,189,248,0.4);
-  }
-  .corazon {
-    display: inline-block;
-    animation: latido 1.2s infinite;
-  }
-  @keyframes latido {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-  }
-</style>
+        body {
+            background-color: #08080a;
+            color: #f1f1f1;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Contenedor principal estilo carta */
+        .card {
+            background: rgba(18, 18, 22, 0.85);
+            border: 1px solid rgba(255, 0, 50, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8),
+                        0 0 15px rgba(255, 0, 50, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        /* Corazón animado con CSS puro */
+        .heart-container {
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            background-color: #ff0033;
+            display: inline-block;
+            height: 30px;
+            margin: 0 10px;
+            position: relative;
+            transform: rotate(-45deg);
+            width: 30px;
+            animation: beat 1.2s infinite ease-in-out;
+            box-shadow: 0 0 20px #ff0033,
+                        0 0 40px #ff0033,
+                        0 0 60px #ff0033;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            background-color: #ff0033;
+            border-radius: 50%;
+            height: 30px;
+            position: absolute;
+            width: 30px;
+            box-shadow: 0 0 20px #ff0033;
+        }
+
+        .heart:before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 15px;
+            top: 0;
+        }
+
+        /* Animación de latido y brillo */
+        @keyframes beat {
+            0% {
+                transform: rotate(-45deg) scale(1);
+                box-shadow: 0 0 20px #ff0033, 0 0 30px #ff0033;
+            }
+            30% {
+                transform: rotate(-45deg) scale(1.25);
+                box-shadow: 0 0 30px #ff0033, 0 0 60px #ff0033, 0 0 90px #ff0033;
+            }
+            50% {
+                transform: rotate(-45deg) scale(1.1);
+                box-shadow: 0 0 20px #ff0033, 0 0 40px #ff0033;
+            }
+            70% {
+                transform: rotate(-45deg) scale(1.3);
+                box-shadow: 0 0 35px #ff0033, 0 0 70px #ff0033, 0 0 100px #ff0033;
+            }
+            100% {
+                transform: rotate(-45deg) scale(1);
+                box-shadow: 0 0 20px #ff0033, 0 0 30px #ff0033;
+            }
+        }
+
+        /* Tipografía y texto */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: #ff3355;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 51, 85, 0.5);
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #cccccc;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: #ff3355;
+            font-weight: 400;
+        }
+
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-top: 25px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- Particulas JS -->
-<script>
-  for(let i=0; i<30; i++){
-    let p = document.createElement('div');
-    p.className='particle';
-    p.style.left = Math.random()*100+'vw';
-    p.style.animationDelay = Math.random()*10+'s';
-    p.style.animationDuration = (8+Math.random()*8)+'s';
-    document.body.appendChild(p);
-  }
-</script>
+    <div class="card">
+        <!-- Corazón Luminoso -->
+        <div class="heart-container">
+            <div class="heart"></div>
+        </div>
 
-<div class="card">
-  <h1>Para Belén <span class="corazon">💙</span></h1>
-  <div class="sub">FUTURA INGENIERA EN SISTEMAS</div>
-  <div id="texto"></div>
-  <div class="firma" id="firma" style="display:none;">— Alguien que cree mucho en ti</div>
-  <button id="btn" onclick="escribir()">Abrir mi carta</button>
-</div>
+        <!-- Mensaje de la Carta -->
+        <h1>Si te quiero TATIANA </h1>
+        
+        <p>
+            OSEA. nose que hacer por eso hise esto. un sitio solo para ti, donde yo digo lo miy hemrosa que eres, enserio me gustas y queiro seguir insistiendo porq me enamore 
+        </p>
 
-<script>
-  const mensaje = `Hola Belén,
+        <p>
+            Osea si te queiro, y aunq
+            no siempre sé cómo explicar, pero que <span class="highlight">siempre siento muy claro
+            
+            aun que sea muy cursi </span>.
+        </p>
 
-Sé que a veces Sistemas parece imposible, que hay días donde el código no compila, donde las matrices no dan y donde piensas "¿y si esto no es para mí?".
+        <div class="signature">Con todo mi cariño ✨</div>
+    </div>
 
-Pero quiero que recuerdes algo: tú no estás aquí por casualidad.
-
-Tienes la lógica, tienes la creatividad y tienes algo que no se enseña: las ganas de no rendirte.
-
-Sistemas no es solo programar, es resolver problemas, es crear cosas que no existían, es ser de las pocas personas que entienden cómo funciona el mundo por dentro.
-
-Un día vas a mirar atrás y vas a agradecerte por no haber renunciado hoy.
-
-Sigue. Estudia. Frustrate. Aprende. Vuelve a intentar.
-
-El mundo necesita más mujeres como tú en tecnología.
-
-Tú puedes con esto y con mucho más.`;
-
-  let i = 0;
-  function escribir() {
-    document.getElementById('btn').style.display='none';
-    const cont = document.getElementById('texto');
-    function type() {
-      if (i < mensaje.length) {
-        cont.innerHTML += mensaje.charAt(i) === '\n' ? '<br>' : mensaje.charAt(i);
-        i++;
-        setTimeout(type, 28);
-      } else {
-        document.getElementById('firma').style.display='block';
-        confeti();
-      }
-    }
-    type();
-  }
-
-  function confeti() {
-    for(let j=0; j<50; j++){
-      let c = document.createElement('div');
-      c.style.position='fixed';
-      c.style.left=Math.random()*100+'vw';
-      c.style.top='-10px';
-      c.style.fontSize='20px';
-      c.innerHTML=['💻','✨','💙','🚀'][Math.floor(Math.random()*4)];
-      c.style.animation=`float ${3+Math.random()*3}s linear forwards`;
-      document.body.appendChild(c);
-    }
-  }
-</script>
 </body>
-</html>
+  </html>
+  
