@@ -1,124 +1,81 @@
-public static void main(String[] args) {
+public class Main {
 
-    System.out.println("========================================");
-    System.out.println("          FACTORIZACION LU");
-    System.out.println("========================================");
+    public static void main(String[] args) {
 
-    double[][] A = {
-        {2, 3, 1},
-        {6, 6, 5},
-        {4, 7, 9}
-    };
+        System.out.println("====================================");
+        System.out.println("       FACTORIZACION LU - A4");
+        System.out.println("====================================");
 
-    int n = A.length;
+        double[][] A = {
+            {2, 3, 1},
+            {6, 8, 5},
+            {4, 7, 9}
+        };
 
-    double[][] L = new double[n][n];
-    double[][] U = new double[n][n];
+        int n = A.length;
 
-    // Crear la matriz identidad L
-    for (int i = 0; i < n; i++) {
-        L[i][i] = 1;
-    }
+        double[][] L = new double[n][n];
+        double[][] U = new double[n][n];
 
-    // Copiar A en U
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            U[i][j] = A[i][j];
+
+        for (int i = 0; i < n; i++) {
+            L[i][i] = 1;
         }
-    }
 
-    // Factorización LU
-    for (int i = 0; i < n; i++) {
+        // Factorizacion LU
+        for (int i = 0; i < n; i++) {
 
-        for (int j = i + 1; j < n; j++) {
+            // Calcular matriz U
+            for (int j = i; j < n; j++) {
+                U[i][j] = A[i][j];
 
-            double factor = U[j][i] / U[i][i];
+                for (int k = 0; k < i; k++) {
+                    U[i][j] -= L[i][k] * U[k][j];
+                }
+            }
 
-            L[j][i] = factor;
+            // Calcular matriz L
+            for (int j = i + 1; j < n; j++) {
+                L[j][i] = A[j][i];
 
-            for (int k = i; k < n; k++) {
-                U[j][k] =
-                    U[j][k] - factor * U[i][k];
+                for (int k = 0; k < i; k++) {
+                    L[j][i] -= L[j][k] * U[k][i];
+                }
+
+                L[j][i] /= U[i][i];
             }
         }
-    }
 
-    System.out.println("\nMATRIZ A:");
-    mostrarMatriz(A);
+        System.out.println("\nMatriz L:");
+        mostrarMatriz(L);
 
-    System.out.println("\nMATRIZ L:");
-    mostrarMatriz(L);
+        System.out.println("\nMatriz U:");
+        mostrarMatriz(U);
 
-    System.out.println("\nMATRIZ U:");
-    mostrarMatriz(U);
+        // Multiplicar L por U
+        double[][] resultado = new double[n][n];
 
-    // Multiplicar L por U
-    double[][] resultado = multiplicarMatrices(L, U);
-
-    System.out.println("\nRESULTADO DE L * U:");
-    mostrarMatriz(resultado);
-
-    // Comprobar resultado
-    System.out.println("\n¿L * U = A?");
-    System.out.println(matricesIguales(A, resultado));
-}
-
-public static void mostrarMatriz(double[][] matriz) {
-
-    for (int i = 0; i < matriz.length; i++) {
-
-        for (int j = 0; j < matriz[i].length; j++) {
-
-            System.out.printf("%10.2f", matriz[i][j]);
-
-        }
-
-        System.out.println();
-    }
-}
-
-public static double[][] multiplicarMatrices(
-        double[][] A, double[][] B) {
-
-    int filas = A.length;
-    int columnas = B[0].length;
-    int comunes = B.length;
-
-    double[][] resultado =
-        new double[filas][columnas];
-
-    for (int i = 0; i < filas; i++) {
-
-        for (int j = 0; j < columnas; j++) {
-
-            for (int k = 0; k < comunes; k++) {
-
-                resultado[i][j] +=
-                    A[i][k] * B[k][j];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < n; k++) {
+                    resultado[i][j] += L[i][k] * U[k][j];
+                }
             }
         }
+
+        System.out.println("\nMultiplicacion L * U:");
+        mostrarMatriz(resultado);
+
+        System.out.println("\nMatriz original A4:");
+        mostrarMatriz(A);
     }
 
-    return resultado;
-}
-
-public static boolean matricesIguales(
-        double[][] A, double[][] B) {
-
-    double tolerancia = 0.000001;
-
-    for (int i = 0; i < A.length; i++) {
-
-        for (int j = 0; j < A[i].length; j++) {
-
-            if (Math.abs(A[i][j] - B[i][j])
-                    > tolerancia) {
-
-                return false;
+    public static void mostrarMatriz(double[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.printf("%8.2f", matriz[i][j]);
             }
+            System.out.println();
         }
     }
-
-    return true;
-}
 }
